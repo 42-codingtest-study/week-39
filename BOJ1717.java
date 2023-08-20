@@ -3,7 +3,7 @@ import java.time.Year;
 import java.util.*;
 
 public class BOJ1717 {
-	static int[] arrayList;
+	static int[] arr;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -13,12 +13,12 @@ public class BOJ1717 {
 		int N = inputNM[0];
 		int M = inputNM[1];
 
-		arrayList = new int[N + 1];
+		arr = new int[N + 1];
 
-		for (int i = 0; i <= N; i++) arrayList[i] = i;
+		for (int i = 0; i <= N; i++) arr[i] = i;
 
 //		System.out.println();
-//		System.out.println(Arrays.toString(arrayList));
+//		System.out.println(Arrays.toString(arr));
 
 		for (int i = 0; i < M; i++) {
 			int[] inputXAB = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
@@ -30,23 +30,23 @@ public class BOJ1717 {
 			else bw.write(isSameArr(A, B));
 		}
 
-//		System.out.println(Arrays.toString(arrayList));
+//		System.out.println(Arrays.toString(arr));
 
 		bw.flush();
 		bw.close();
 	}
 
 	private static int find(int x) {
-		if (x == arrayList[x]) return x;
-		return arrayList[x] = find(arrayList[x]);
+		if (x == arr[x]) return x;
+		return arr[x] = find(arr[x]);
 	}
 
 	private static void union(int A, int B) {
 		A = find(A);
 		B = find(B);
 
-		if (A < B) arrayList[B] = A;
-		else if (A > B) arrayList[A] = B;
+		if (A < B) arr[B] = A;
+		else if (A > B) arr[A] = B;
 	}
 
 	private static String isSameArr(int A, int B) {
